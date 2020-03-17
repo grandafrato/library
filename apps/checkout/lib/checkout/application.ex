@@ -7,7 +7,8 @@ defmodule Checkout.Application do
 
   def start(_type, _args) do
     children = [
-      {Checkout.Repo, []}
+      # Starts a worker by calling: Checkout.Worker.start_link(arg)
+      # {Checkout.Worker, arg}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
