@@ -22,3 +22,5 @@ erl_crash.dump
 books_table
 
 cards_table
+
+admins_table
