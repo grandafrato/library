@@ -3,16 +3,25 @@ defmodule Checkout do
   Documentation for `Checkout`.
   """
 
-  @doc """
-  Hello world.
+  def checkout_book(card_id, isbn) do
+    book = Checkout.Books.lookup_by_isbn(isbn)
+    card = Checkout.Cards.lookup_by_id(card_id)
 
-  ## Examples
+    Checkout.Cards.update_field_by_id(
+      card_id,
+      :checked_out_books,
+      [book | Map.fetch!(card, :checked_out_books)]
+    )
+  end
 
-      iex> Checkout.hello()
-      :world
+  def return_book(card_id, isbn) do
+    book = Checkout.Books.lookup_by_isbn(isbn)
+    card = Checkout.Cards.lookup_by_id(card_id)
 
-  """
-  def hello do
-    :world
+    Checkout.Cards.update_field_by_id(
+      card_id,
+      :checked_out_books,
+      List.delete(Map.fetch!(card, :checked_out_books), book)
+    )
   end
 end
