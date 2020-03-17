@@ -7,7 +7,8 @@ defmodule Checkout.Application do
 
   def start(_type, _args) do
     children = [
-      Checkout.Books
+      Checkout.Books,
+      Checkout.Cards
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

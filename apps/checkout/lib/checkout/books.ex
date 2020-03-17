@@ -40,6 +40,7 @@ defmodule Checkout.Books do
     {:ok, table} = :dets.open_file(:books_table, [type: :set])
 
     spawn(fn ->
+      # Sends signal after 10 minutes.
       Process.send_after(:books, :reopen_table, 600000)
     end)
 

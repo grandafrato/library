@@ -20,3 +20,5 @@ erl_crash.dump
 *.ez
 
 books_table
+
+cards_table
