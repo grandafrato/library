@@ -33,11 +33,11 @@ defmodule Checkout.Admins do
 
   @impl true
   def init(_list) do
-    {:ok, table} = :dets.open_file(:admins_table, [type: :set])
+    {:ok, table} = :dets.open_file(:admins_table, type: :set)
 
     # Creates a default Admin if one doesn't exist.
     :dets.insert_new(
-      table, 
+      table,
       {
         "admin",
         %__MODULE__.Admin{
@@ -50,7 +50,7 @@ defmodule Checkout.Admins do
 
     spawn(fn ->
       # Sends the signal after 10 minutes.
-      Process.send_after(:admins, :reopen_table, 600000)
+      Process.send_after(:admins, :reopen_table, 600_000)
     end)
 
     {:ok, table}
@@ -61,11 +61,11 @@ defmodule Checkout.Admins do
     :dets.sync(table)
 
     :dets.close(table)
-    {:ok, reopened_table} = :dets.open_file(:admins_table, [type: :set])
+    {:ok, reopened_table} = :dets.open_file(:admins_table, type: :set)
 
     spawn(fn ->
       # Sends the signal after 10 minutes.
-      Process.send_after(:admins, :reopen_table, 600000)
+      Process.send_after(:admins, :reopen_table, 600_000)
     end)
 
     {:noreply, reopened_table}
