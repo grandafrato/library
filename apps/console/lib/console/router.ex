@@ -19,7 +19,9 @@ defmodule Console.Router do
     get "/", PageController, :index
 
     get "/cards", CardController, :index
-    get "/cards/:id", CardController, :show
+    post "/cards", CardController, :create
+    get "/cards/show/:id", CardController, :show
+    get "/cards/new", CardController, :new
   end
 
   # Other scopes may use custom stacks.

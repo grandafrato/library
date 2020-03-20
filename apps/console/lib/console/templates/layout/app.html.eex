@@ -16,7 +16,7 @@
       <section class="container">
         <nav role="navigation">
           <ul>
-            <li><a href="https://hexdocs.pm/phoenix/overview.html">Get Started</a></li>
+            <li><%= link("Cards", to: "/cards") %></li>
           </ul>
         </nav>
         <a href="<%= Routes.page_path(@conn, :index) %>" class="phx-logo">

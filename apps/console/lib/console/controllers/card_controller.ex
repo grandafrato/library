@@ -6,12 +6,40 @@ defmodule Console.CardController do
   end
 
   def show(conn, %{"id" => id}) do
-    %{first_name: first_name, last_name: last_name} =
-      Checkout.Cards.lookup_by_id(id)
+    %{first_name: first_name, last_name: last_name} = Checkout.Cards.lookup_by_id(id)
+
     render(
       conn,
       "show.html",
-      [id: id, first_name: first_name, last_name: last_name]
+      id: id,
+      first_name: first_name,
+      last_name: last_name
     )
+  end
+
+  def new(conn, _params) do
+    render(conn, "new.html")
+  end
+
+  def create(
+        conn,
+        %{
+          "card" => %{
+            "first_name" => first_name,
+            "last_name" => last_name,
+            "enter_another?" => another
+          }
+        }
+      ) do
+    Checkout.Cards.add(Checkout.Cards.Card.new(first_name, last_name))
+    next(conn, another)
+  end
+
+  def next(conn, "true") do
+    new(conn, nil)
+  end
+
+  def next(conn, "false") do
+    index(conn, nil)
   end
 end
