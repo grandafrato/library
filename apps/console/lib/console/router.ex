@@ -20,7 +20,10 @@ defmodule Console.Router do
 
     get "/cards", CardController, :index
     post "/cards", CardController, :create
-    get "/cards/show/:id", CardController, :show
+    get "/cards/card/:id", CardController, :show
+    get "/cards/card/:id/edit", CardController, :edit
+    patch "/cards/card/:id", CardController, :update
+    delete "/cards/card/:id", CardController, :delete
     get "/cards/new", CardController, :new
   end
 

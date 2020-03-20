@@ -4,6 +4,9 @@
   <h3><%= @id %></h2>
 </div>
 
+<%= button("Remove Card", to: Routes.card_path(@conn, :delete, @id), method: :delete) %>
+<%= button("Edit Card", to: Routes.card_path(@conn, :edit, @id), method: :get) %>
+
 <h1>Checked out books:</h1>
 <table>
   <thead>

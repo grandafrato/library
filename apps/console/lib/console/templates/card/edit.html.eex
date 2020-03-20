@@ -1,0 +1,8 @@
+<h1>Edit Card</h1>
+<%= form_for @conn, Routes.card_path(@conn, :update, @id), [as: :card, method: :patch], fn f -> %>
+  <h2>First Name</h2>
+  <%= text_input f, :first_name, value: @card.first_name %>
+  <h2>Last Name</h2>
+  <%= text_input f, :last_name, value: @card.last_name %>
+  <%= submit "Update" %>
+<% end %>

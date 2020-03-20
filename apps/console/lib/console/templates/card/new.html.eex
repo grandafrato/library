@@ -1,9 +1,9 @@
 <h1>Enter a new card</h1>
 <%= form_for @conn, Routes.card_path(@conn, :create), [as: :card], fn f -> %>
   <h2>First Name</h2>
-  <%= text_input f, :first_name %>
+  <%= text_input f, :first_name, value: "" %>
   <h2>Last Name</h2>
-  <%= text_input f, :last_name %>
+  <%= text_input f, :last_name, value: "" %>
   <div class="row">
     <h3>Enter another?</h3>
     <%= checkbox f, :enter_another? %>

@@ -34,11 +34,36 @@ defmodule Console.CardController do
     next(conn, another)
   end
 
-  def next(conn, "true") do
+  defp next(conn, "true") do
     new(conn, nil)
   end
 
-  def next(conn, "false") do
+  defp next(conn, "false") do
+    index(conn, nil)
+  end
+
+  def delete(conn, %{"id" => id}) do
+    Checkout.Cards.remove_by_id(id)
+    index(conn, nil)
+  end
+
+  def edit(conn, %{"id" => id}) do
+    card = Checkout.Cards.lookup_by_id(id)
+    render(conn, "edit.html", id: id, card: card)
+  end
+
+  def update(
+        conn,
+        %{
+          "card" => %{
+            "first_name" => first_name,
+            "last_name" => last_name
+          },
+          "id" => id
+        }
+      ) do
+    Checkout.Cards.update_field_by_id(id, :first_name, first_name)
+    Checkout.Cards.update_field_by_id(id, :last_name, last_name)
     index(conn, nil)
   end
 end
