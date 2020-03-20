@@ -6,14 +6,13 @@ defmodule Console.CardController do
   end
 
   def show(conn, %{"id" => id}) do
-    %{first_name: first_name, last_name: last_name} = Checkout.Cards.lookup_by_id(id)
+    card = Checkout.Cards.lookup_by_id(id)
 
     render(
       conn,
       "show.html",
       id: id,
-      first_name: first_name,
-      last_name: last_name
+      card: card
     )
   end
 

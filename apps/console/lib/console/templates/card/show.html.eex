@@ -1,5 +1,25 @@
 <div class="card-info">
-  <h1><%= @first_name %> <%= @last_name %></h1>
+  <h1><%= @card.first_name %> <%= @card.last_name %></h1>
   <img src="<%= generate_barcode(@id) %>" alt="Barcode"/>
   <h3><%= @id %></h2>
 </div>
+
+<h1>Checked out books:</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author(s)</th>
+      <th>ISBN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for book <- @card.checked_out_books do %>
+      <tr>
+        <td><%= book.title %></td>
+        <td><%= book.author %></td>
+        <td><%= book.isbn %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
