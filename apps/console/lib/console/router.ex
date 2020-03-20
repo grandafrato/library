@@ -17,6 +17,9 @@ defmodule Console.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    get "/cards", CardController, :index
+    get "/cards/:id", CardController, :show
   end
 
   # Other scopes may use custom stacks.
