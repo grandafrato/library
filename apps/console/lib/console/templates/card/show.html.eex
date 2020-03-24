@@ -1,11 +1,15 @@
-<div class="card-info">
-  <h1><%= @card.first_name %> <%= @card.last_name %></h1>
-  <img src="<%= generate_barcode(@id) %>" alt="Barcode"/>
-  <h3><%= @id %></h2>
-</div>
+<div class="phx-hero">
+  <div class="card-info">
+    <h1><%= @card.first_name %> <%= @card.last_name %></h1>
+    <img src="<%= generate_barcode(@id) %>" alt="Barcode"/>
+    <h3><%= @id %></h2>
+  </div>
 
-<%= button("Remove Card", to: Routes.card_path(@conn, :delete, @id), method: :delete) %>
-<%= button("Edit Card", to: Routes.card_path(@conn, :edit, @id), method: :get) %>
+  <div class="row card-options">
+    <%= button("Remove Card", to: Routes.card_path(@conn, :delete, @id), method: :delete) %>
+    <%= button("Edit Card", to: Routes.card_path(@conn, :edit, @id), method: :get) %>
+  </div>
+</div>
 
 <h1>Checked out books:</h1>
 <table>
