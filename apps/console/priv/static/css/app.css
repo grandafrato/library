@@ -132,3 +132,18 @@ header nav a {
     margin: 2rem 1rem;
   }
 }
+
+/* This file is for your main application css. */
+
+.card-info {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+#card_enter_another\? {
+  margin-left: 10px;
+  margin-top: 0px;
+}
+
+
