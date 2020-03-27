@@ -5,3 +5,8 @@ use Mix.Config
 config :console, Console.Endpoint,
   http: [port: 4002],
   server: false
+
+config :checkout,
+  admins_table_name: :admins_table_test,
+  cards_table_name: :cards_table_test,
+  books_table_name: :books_table_test

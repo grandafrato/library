@@ -37,7 +37,12 @@ defmodule Checkout.Books do
 
   @impl true
   def init(_list) do
-    {:ok, table} = :dets.open_file(:books_table, type: :set)
+    {:ok, table} = Application.get_env(
+      :checkout,
+      :books_table_name,
+      :books_table
+    )
+    |> :dets.open_file(type: :set)
 
     spawn(fn ->
       # Sends signal after 10 minutes.
@@ -52,7 +57,13 @@ defmodule Checkout.Books do
     :dets.sync(table)
 
     :dets.close(table)
-    {:ok, reopened_table} = :dets.open_file(:books_table, type: :set)
+
+    {:ok, reopened_table} = Application.get_env(
+      :checkout,
+      :books_table_name,
+      :books_table
+    )
+    |> :dets.open_file(type: :set)
 
     spawn(fn ->
       Process.send_after(:books, :reopen_table, 600_000)
