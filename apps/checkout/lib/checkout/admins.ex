@@ -33,12 +33,13 @@ defmodule Checkout.Admins do
 
   @impl true
   def init(_list) do
-    {:ok, table} = Application.get_env(
-      :checkout,
-      :admins_table_name,
-      :admins_table
-    )
-    |> :dets.open_file(type: :set)
+    {:ok, table} =
+      Application.get_env(
+        :checkout,
+        :admins_table_name,
+        :admins_table
+      )
+      |> :dets.open_file(type: :set)
 
     # Creates a default Admin if one doesn't exist.
     :dets.insert_new(
@@ -67,13 +68,13 @@ defmodule Checkout.Admins do
 
     :dets.close(table)
 
-    {:ok, reopened_table} = Application.get_env(
-      :checkout,
-      :admins_table_name,
-      :admins_table
-    )
-    |> :dets.open_file(type: :set)
-
+    {:ok, reopened_table} =
+      Application.get_env(
+        :checkout,
+        :admins_table_name,
+        :admins_table
+      )
+      |> :dets.open_file(type: :set)
 
     spawn(fn ->
       # Sends the signal after 10 minutes.

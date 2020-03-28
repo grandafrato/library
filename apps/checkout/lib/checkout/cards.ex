@@ -37,12 +37,13 @@ defmodule Checkout.Cards do
 
   @impl true
   def init(_list) do
-    {:ok, table} = Application.get_env(
-      :checkout,
-      :cards_table_name,
-      :cards_table
-    )
-    |> :dets.open_file(type: :set)
+    {:ok, table} =
+      Application.get_env(
+        :checkout,
+        :cards_table_name,
+        :cards_table
+      )
+      |> :dets.open_file(type: :set)
 
     spawn(fn ->
       # Sends the signal after 10 minutes.
@@ -58,12 +59,13 @@ defmodule Checkout.Cards do
 
     :dets.close(table)
 
-    {:ok, reopened_table} = Application.get_env(
-      :checkout,
-      :cards_table_name,
-      :cards_table
-    )
-    |> :dets.open_file(type: :set)
+    {:ok, reopened_table} =
+      Application.get_env(
+        :checkout,
+        :cards_table_name,
+        :cards_table
+      )
+      |> :dets.open_file(type: :set)
 
     spawn(fn ->
       Process.send_after(:cards, :reopen_table, 600_000)
